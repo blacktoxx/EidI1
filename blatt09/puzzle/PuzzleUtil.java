@@ -51,11 +51,27 @@ public class PuzzleUtil {
         System.out.println("\narr2 extractArray(0,2,0,2): ");
         view(extractArray(arr2, 0, 2, 0, 2));
 
+        System.out.println("\narr2 extractArray(0,2,0,3): ");
+        view(extractArray(arr2, 0, 2, 0, 3));
+
 
 
         System.out.println("\narr2 rotateClockwise: ");
         rotateClockwise(arr2);
         view(arr2);
+
+
+        // Rotate Clockwise bigger Array
+
+        int[][] arr3 = new int[][] {{1, 2, 3, 4}, {5, 6, 7, 8}, {8, 7, 6, 5}, {4, 3, 2, 1}};
+        System.out.println("\narr3 rotateClockwise: ");
+        view(arr3);
+
+
+        System.out.println("\narr3 rotateClockwise: ");
+        rotateClockwise(arr3);
+        view(arr3);
+
 
         /*
 
@@ -125,7 +141,8 @@ public class PuzzleUtil {
         
         for (int i = colStart ; i < colEnd ; i++ ) {
             
-            if (shiftDown) {
+            // Fehler in der Angabe, deshalb negiert
+            if (!shiftDown) {
 
                 int buffer = array[array.length - 1][i];
                 for (int j = array.length - 1 ; j > 0 ; j-- ) {
@@ -161,13 +178,13 @@ public class PuzzleUtil {
 
 
         // Neues Array wird erzeugt
-        int[][] extracted = new int[colEnd - colStart][rowEnd - rowStart];
+        int[][] extracted = new int[rowEnd - rowStart][colEnd - colStart];
 
 
-        for (int i = rowStart, k = 0 ; i < rowEnd ; i++, k++) {
-            for (int j = colStart, l = 0 ; j < colEnd ; j++, l++) {
+        for (int rowOld = rowStart, rowNew = 0 ; rowOld < rowEnd ; rowOld++, rowNew++) {
+            for (int colOld = colStart, colNew = 0 ; colOld < colEnd ; colOld++, colNew++) {
                 
-                extracted[l][k] = array[j][i];
+                extracted[rowNew][colNew] = array[rowOld][colOld];
             }
         }
 
@@ -182,7 +199,7 @@ public class PuzzleUtil {
        for (int i = rowIndex, k = 0 ; k < delta[0].length && i < array[0].length ; i++, k++) {
             for (int j = colIndex, l = 0 ; l < delta.length && l < array.length ; j++, l++ ) {
                 
-                array[j][i] = delta[l][k];
+                array[i][j] = delta[k][l];
             }
         } 
     }
