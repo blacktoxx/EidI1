@@ -42,7 +42,6 @@ public class Recursion01 {
 
         System.out.println("\nTest bigFacTr(50) = ");
         System.out.println("Ergebnis: " + bigFacTr(50).toString());
-
     }
 
     private static int facIt(int n) {
@@ -59,18 +58,16 @@ public class Recursion01 {
         return n <= 1 ? 1 : n * facHr(n - 1);
     }
 
-
     private static int facTr(int n) {
         //TODO: b)
-        return facTrHelp(n, 1);
+        return facTr(n, 1);
     }
 
-
-    private static int facTrHelp(int n, int total){
+    private static int facTr(int n, int total){
     	if (n <= 1) {
     		return total;
     	}else{
-    		return facTrHelp(n - 1, total * n);
+    		return facTr(n - 1, total * n);
     	}
     }
 
@@ -104,31 +101,30 @@ public class Recursion01 {
     	if (n < k || k < 0) {
         	return -1;
         }
-        return binomTrHelp(n, k, 1);
+        return binomTr(n, k, 1);
     }
 
-
-    private static int binomTrHelp(int n, int k, double total){
+    private static int binomTr(int n, int k, double total){
 
         if (k == 1) {
             return (int) Math.round(total*n);
         }
-        return binomTrHelp(n-1, k-1, total*n/k);
+        return binomTr(n-1, k-1, total*n/k);
 
     }
 
     public static BigInteger bigFacTr(int n){
 
         // BigInteger number = new BigInteger(String.valueOf(n));
-        return bigFacTrHelp(BigInteger.valueOf(n), new BigInteger("1"));
+        return bigFacTr(BigInteger.valueOf(n), new BigInteger("1"));
     }
 
-    public static BigInteger bigFacTrHelp(BigInteger n, BigInteger total){
+    public static BigInteger bigFacTr(BigInteger n, BigInteger total){
 
         if (n.compareTo(BigInteger.valueOf(1)) <= 0) {
             return total;
         }else{
-            return bigFacTrHelp(n.subtract(BigInteger.valueOf(1)), total.multiply(n));
+            return bigFacTr(n.subtract(BigInteger.valueOf(1)), total.multiply(n));
         }
     }
 }
