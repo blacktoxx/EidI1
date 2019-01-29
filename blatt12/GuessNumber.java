@@ -61,7 +61,6 @@ public class GuessNumber {
     	int x = (l + r) / 2;
     	int count = 1;
 
-
     	while (true){
     		if (x == random) {
     			break;
@@ -83,7 +82,7 @@ public class GuessNumber {
     private static void randomizedSearch(int l, int r, int random) {
         //TODO: e)
 
-    	int x = randomGen.nextInt(r + 1 - l);;
+    	int x = randomGen.nextInt(r + 1 - l) + l;
     	int count = 0;
     	while (true){
     		if (x == random) {
@@ -91,11 +90,11 @@ public class GuessNumber {
     		}
 
     		if (x < random) {
-    			l = x;
+    			l = x + 1;
     		}else{
-    			r = x;
+    			r = x - 1;
     		}
-    		x = randomGen.nextInt(r + 1 - l);
+    		x = randomGen.nextInt(r + 1 - l) + l;
     		count++;
     	}
 
